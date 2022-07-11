@@ -1,0 +1,58 @@
+{
+    "name": "taecel/taecel",
+    "description": "Libreria de laravel para trabajar con taecel: https://taecel.com/portal/",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+		"taecel"
+	],
+    "authors": [
+        {
+            "name": "itrends",
+            "email": "contacto@itrends.com.mx"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable":true,
+    "require": {
+        "php": "^8",
+        "guzzlehttp/guzzle": "^7.4"
+    },
+    "require-dev": {
+        "symfony/thanks": "^1.0",
+        "phpunit/phpunit": "^9",
+        "orchestra/testbench": "^7",
+        "illuminate/support": "^9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Taecel\\Taecel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Taecel\\Taecel\\Tests\\":"tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "symfony/thanks": true
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Taecel\\Taecel\\TaecelServiceProvider"
+            ],
+            "aliases": {
+                "Taecel": "Taecel\\Taecel\\TaecelFacade"
+            }
+        }
+    }
+}
