@@ -17,4 +17,11 @@ class TaecelTest extends TestCase
         $this->assertNotEmpty($response);
     }
 
+    public function testGetProductos()
+    {
+        $repository = Taecel::create();
+        $this->assertNotNull($repository);
+        $repository->getProducts();
+    }
+
 }

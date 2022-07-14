@@ -2,6 +2,10 @@
 
 namespace Taecel\Taecel\Components;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
+use Exception;
+
 class TaeProducto
 {
 
@@ -16,6 +20,37 @@ class TaeProducto
     private float $unidades;
     private string $vigencia;
     private string $descripcion;
+
+    protected array $rules = [
+        'Bolsa' => 'required|bail',
+        'BolsaID' => 'required|bail|integer',
+        'Categoria' => 'required|bail',
+        'CategoriaID' => 'required|bail|integer',
+        'Carrier' => 'required|bail',
+        'CarrierID' => 'required|bail|integer',
+        'Codigo' => 'required|bail',
+        'Monto' => 'required|integer',
+        'Unidades' => 'required',
+        'Vigencia' => 'required|string',
+        'Descripcion' => 'required'
+    ];
+
+    public function __construct(array $data)
+    {
+        $validator = Validator::make($data, $this->rules);
+        throw_if($validator->failed(), new Exception($validator->getMessageBag()->first()));
+        $this->bolsa = Arr::get($data,'Bolsa');
+        $this->bolsa_id = Arr::get($data,'BolsaID');
+        $this->categoria = Arr::get($data,'Categoria');
+        $this->categoria_id = Arr::get($data,'CategoriaID');
+        $this->carrier = Arr::get($data,'Carrier');
+        $this->carrier_id = Arr::get($data,'CarrierID');
+        $this->codigo = Arr::get($data,'Codigo');
+        $this->monto = Arr::get($data,'Monto');
+        $this->unidades = Arr::get($data,'Unidades');
+        $this->vigencia = Arr::get($data,'Vigencia');
+        $this->descripcion = Arr::get($data,'Descripcion');
+    }
 
     /**
      * @return string

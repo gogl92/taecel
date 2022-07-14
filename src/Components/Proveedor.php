@@ -1,5 +1,9 @@
 <?php namespace Taecel\Taecel\Components;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
+use Exception;
+
 class Proveedor
 {
     private int $id;
@@ -10,6 +14,28 @@ class Proveedor
     private int $categoria_id;
     private int $tipo;
     private string|null $promo_url;
+
+    protected array $rules = [
+        'ID' => 'required|bail',
+        'Nombre' => 'required|bail',
+        'BolsaID' => 'required|bail|integer',
+        'Categoria' => 'required|bail',
+        'CategoriaID' => 'required|bail|integer',
+        'Tipo' => 'required|integer'
+    ];
+
+    public function __construct(array $data)
+    {
+        $validator = Validator::make($data, $this->rules);
+        throw_if($validator->failed(), new Exception($validator->getMessageBag()->first()));
+        $this->id = Arr::get($data, 'ID');
+        $this->nombre = Arr::get($data,'Nombre');
+        $this->url_logotipo = Arr::get($data,'Logotipo');
+        $this->bolsa_id = Arr::get($data,'BolsaID');
+        $this->categoria = Arr::get($data,'Categoria');
+        $this->categoria_id = Arr::get($data, 'CategoriaID');
+        $this->tipo = Arr::get($data,'Tipo');
+    }
 
     /**
      * @return int

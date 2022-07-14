@@ -22,6 +22,8 @@ class TestCase extends BaseTestCase
             'database' => ':memory:',
             'prefix'   => '',
         ]);
+        $app['config']->set('logging.default', 'stack');
+        $app['config']->set('logging.channels.single.path', __DIR__.'/../logs/laravel.log');
     }
 
     protected function getPackageProviders($app)
