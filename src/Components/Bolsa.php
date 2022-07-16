@@ -4,16 +4,8 @@ namespace Taecel\Taecel\Components;
 
 class Bolsa
 {
-    private int|string $id;
-    private string $nombre;
-    private float $saldo;
 
-    public function __construct(int|string $id, string $nombre, float $saldo)
-    {
-        $this->id = $id;
-        $this->nombre = $nombre;
-        $this->saldo = $saldo;
-    }
+    public function __construct(private int|string $id, private string $nombre, private float $saldo){}
 
     /**
      * @return int|string

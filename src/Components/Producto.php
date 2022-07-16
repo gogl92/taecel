@@ -6,7 +6,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Exception;
 
-class TaeProducto
+class Producto
 {
 
     private string $bolsa;

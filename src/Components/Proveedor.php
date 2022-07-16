@@ -14,6 +14,8 @@ class Proveedor
     private int $categoria_id;
     private int $tipo;
     private string|null $promo_url;
+    /** @var array<Campo> */
+    private array $campos;
 
     protected array $rules = [
         'ID' => 'required|bail',
@@ -35,6 +37,11 @@ class Proveedor
         $this->categoria = Arr::get($data,'Categoria');
         $this->categoria_id = Arr::get($data, 'CategoriaID');
         $this->tipo = Arr::get($data,'Tipo');
+        $campos = Arr::get($data, 'Campos');
+        foreach ($campos as $campo)
+        {
+            $this->campos[] = new Campo($campo);
+        }
     }
 
     /**
@@ -163,6 +170,14 @@ class Proveedor
     public function setPromoUrl(?string $promo_url): void
     {
         $this->promo_url = $promo_url;
+    }
+
+    /**
+     * @return Campo[]
+     */
+    public function getCampos(): array
+    {
+        return $this->campos;
     }
 
 }
