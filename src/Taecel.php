@@ -20,10 +20,11 @@ class Taecel
 
     private const CACHE_KEY = 'productos_availables';
 
-    private const TIEMPO_AIRE = 1;
-    private const PAQUETES = 2;
-    private const SERVICIOS = 3;
-    private const GIF_CARDS = 4;
+    const TIEMPO_AIRE = 1;
+    const PAQUETES = 2;
+    const SERVICIOS = 3;
+    const GIF_CARDS = 4;
+
     /** @var Collection<Proveedor> */
     private Collection $proveedores_tae;
     /** @var Collection<Proveedor> */
@@ -130,6 +131,14 @@ class Taecel
     private function isOnline() : bool
     {
         return boolval(@fsockopen("www.google.com", 80));
+    }
+
+    public function getProductsByCarrier(int $carrier_id) : Collection
+    {
+        $this->getProducts();
+        return $this->productos->where(function(Producto $producto) use ($carrier_id){
+            return $producto->getCarrierId() === $carrier_id;
+        });
     }
 
 }
