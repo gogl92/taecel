@@ -16,6 +16,12 @@ class TaecelServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/taecel.php', 'taecel');
 
         $this->publishConfig();
+        /*if($this->app->runningInConsole())
+        {
+            $this->commands([
+                GenerarMatrizDePruebas::class
+            ]);
+        }*/
     }
 
     /**
