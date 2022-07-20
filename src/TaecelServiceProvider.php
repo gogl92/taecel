@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Taecel\Taecel\Commands\GenerarMatrizDePruebas;
 
 class TaecelServiceProvider extends ServiceProvider
 {
@@ -15,6 +16,12 @@ class TaecelServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/taecel.php', 'taecel');
 
         $this->publishConfig();
+        /*if($this->app->runningInConsole())
+        {
+            $this->commands([
+                GenerarMatrizDePruebas::class
+            ]);
+        }*/
     }
 
     /**

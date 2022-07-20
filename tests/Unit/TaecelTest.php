@@ -3,10 +3,10 @@
 namespace Taecel\Taecel\Tests\Unit;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Artisan;
 use Taecel\Taecel\Components\InformacionDeTransaccion;
 use Taecel\Taecel\Components\Producto;
 use Taecel\Taecel\Components\Proveedor;
-use Taecel\Taecel\Resources\ProveedorResource;
 use Taecel\Taecel\Taecel;
 use Taecel\Taecel\Tests\TestCase;
 use Throwable;
@@ -267,5 +267,12 @@ class TaecelTest extends TestCase
         $this->assertNotNull($information);
         $this->assertInstanceOf(InformacionDeTransaccion::class, $information);
     }
+
+    /*
+    public function testMatrizDePruebas()
+    {
+        Artisan::call('taecel:matrizdepruebas');
+    }
+    */
 
 }
