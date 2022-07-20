@@ -2,7 +2,10 @@
 
 namespace Taecel\Taecel\Tests\Unit;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Artisan;
+use Taecel\Taecel\Commands\GenerarMatrizDePruebas;
 use Taecel\Taecel\Components\InformacionDeTransaccion;
 use Taecel\Taecel\Components\Producto;
 use Taecel\Taecel\Components\Proveedor;

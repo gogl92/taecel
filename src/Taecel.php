@@ -110,7 +110,7 @@ class Taecel
                 ]);
                 throw_if($httpResponse->status() !== 200, new Exception(sprintf('%d error', $httpResponse->status())));
                 $data = $httpResponse->json();
-                throw_unless($data['success'], new Exception(sprintf(__('message %s, error: %d'), $data['message'], $data['error'])));
+                throw_unless($data['success'], new Exception(sprintf(__('%s, error: %d'), $data['message'], $data['error'])));
                 $_data = $data['data'];
                 Cache::add(Taecel::CACHE_KEY, $_data);
             }
@@ -208,7 +208,7 @@ class Taecel
         if ($this->validate_online) throw_unless($this->isOnline(), ServerIsOffline::class);
         $validator = Validator::make($data, $this->txnRules);
         throw_if($validator->fails(), ValidationException::class);
-        $httpResponse = Http::asForm()->post($this->url('RequestTXN'), [
+        $httpResponse = Http::asForm()->timeout(120)->post($this->url('RequestTXN'), [
             'key' => $this->key,
             'nip' => $this->nip,
             'producto' => Arr::get($data,'producto'),
@@ -217,7 +217,7 @@ class Taecel
         ]);
         throw_if($httpResponse->status() !== 200, new Exception(sprintf('%d error', $httpResponse->status())));
         $data = $httpResponse->json();
-        throw_unless($data['success'], new Exception(sprintf(__('message %s, error: %d'), $data['message'], $data['error'])));
+        throw_unless($data['success'], new Exception(sprintf(__('%s, error: %d'), $data['message'], $data['error'])));
         return Arr::get( Arr::get($data,'data') , 'transID');
     }
 
@@ -232,14 +232,14 @@ class Taecel
         if ($this->validate_online) throw_unless($this->isOnline(), ServerIsOffline::class);
         $validator = Validator::make($data, $this->statusTXN);
         throw_if($validator->fails(), ValidationException::class);
-        $httpResponse = Http::asForm()->post($this->url('StatusTXN'), [
+        $httpResponse = Http::asForm()->timeout(120)->post($this->url('StatusTXN'), [
             'key' => $this->key,
             'nip' => $this->nip,
             'transID' => Arr::get($data,'transaction_id')
         ]);
         throw_if($httpResponse->status() !== 200, new Exception(sprintf('%d error', $httpResponse->status())));
         $data = $httpResponse->json();
-        throw_unless($data['success'], new Exception(sprintf(__('message %s, error: %d'), $data['message'], $data['error'])));
+        throw_unless($data['success'], new Exception(sprintf(__('%s, error: %d'), $data['message'], $data['error'])));
         return new InformacionDeTransaccion($data['data']);
     }
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Taecel\Taecel\Commands\GenerarMatrizDePruebas;
 
 class TaecelServiceProvider extends ServiceProvider
 {
