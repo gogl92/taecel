@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use Taecel\Taecel\Components\InformacionDeTransaccion;
 use Taecel\Taecel\Components\Producto;
 use Taecel\Taecel\Components\Proveedor;
+use Taecel\Taecel\Resources\ProveedorResource;
 use Taecel\Taecel\Taecel;
 use Taecel\Taecel\Tests\TestCase;
 use Throwable;

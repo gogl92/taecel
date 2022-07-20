@@ -1,10 +1,12 @@
 <?php namespace Taecel\Taecel\Components;
 
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Exception;
 
-class Proveedor
+class Proveedor implements Arrayable, Jsonable
 {
     private int $id;
     private string $nombre;
@@ -180,4 +182,20 @@ class Proveedor
         return $this->campos;
     }
 
+    public function toArray()
+    {
+        return [
+            'id' => $this->getId(),
+            'nombre' => $this->getNombre(),
+            'bolsa_id' => $this->getBolsaId(),
+            'categoria' => $this->getCategoria(),
+            'categoria_id' => $this->getCategoriaId(),
+            'tipo' => $this->getTipo()
+        ];
+    }
+
+    public function toJson($options = 0)
+    {
+        return json_encode($this->toArray(), $options);
+    }
 }

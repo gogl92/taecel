@@ -2,9 +2,11 @@
 
 namespace Taecel\Taecel\Components;
 
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Arr;
 
-class InformacionDeTransaccion
+class InformacionDeTransaccion implements Arrayable, Jsonable
 {
     private string $transId;
     private string $fecha;
@@ -134,4 +136,21 @@ class InformacionDeTransaccion
         $this->nota = $nota;
     }
 
+    public function toArray()
+    {
+        return [
+            'transId' => $this->getTransId(),
+            'fecha'   => $this->getFecha(),
+            'carrier' => $this->getCarrier(),
+            'folio'   => $this->getFolio(),
+            'status'  => $this->getStatus(),
+            'monto'   => $this->getMonto(),
+            'nota'    => $this->getNota()
+        ];
+    }
+
+    public function toJson($options = 0)
+    {
+        return json_encode($this->toArray(), $options);
+    }
 }
