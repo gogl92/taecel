@@ -2,7 +2,10 @@
 
 namespace Taecel\Taecel\Components;
 
-class Bolsa
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
+
+class Bolsa implements Arrayable, Jsonable
 {
 
     public function __construct(private int|string $id, private string $nombre, private float $saldo){}
@@ -55,4 +58,17 @@ class Bolsa
         $this->saldo = $saldo;
     }
 
+    public function toArray()
+    {
+        return [
+            'id' => $this->getId(),
+            'nombre' => $this->getNombre(),
+            'saldo'  => $this->getSaldo()
+        ];
+    }
+
+    public function toJson($options = 0)
+    {
+        return json_encode($this->toArray(), $options);
+    }
 }

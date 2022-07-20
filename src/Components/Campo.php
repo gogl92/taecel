@@ -2,11 +2,13 @@
 
 namespace Taecel\Taecel\Components;
 
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Exception;
 
-class Campo
+class Campo implements Arrayable, Jsonable
 {
     private string $nombre;
     private string $campo;
@@ -151,4 +153,21 @@ class Campo
         $this->obligatorio = $obligatorio;
     }
 
+    public function toArray()
+    {
+        return [
+            'nombre' => $this->getNombre(),
+            'campo'  => $this->getCampo(),
+            'min'    => $this->getMin(),
+            'max'    => $this->getMax(),
+            'formato'=> $this->getFormato(),
+            'confirmar' => $this->getConfirmar(),
+            'obligatorio'=> $this->getObligatorio()
+        ];
+    }
+
+    public function toJson($options = 0)
+    {
+        return json_encode($this->toArray(), $options);
+    }
 }

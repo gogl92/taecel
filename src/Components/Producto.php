@@ -2,11 +2,13 @@
 
 namespace Taecel\Taecel\Components;
 
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Exception;
 
-class Producto
+class Producto implements Arrayable, Jsonable
 {
 
     private string $bolsa;
@@ -226,6 +228,28 @@ class Producto
     public function setDescripcion(string $descripcion): void
     {
         $this->descripcion = $descripcion;
+    }
+
+    public function toArray()
+    {
+        return [
+            'bolsa' => $this->getBolsa(),
+            'bolsa_id' => $this->getBolsaId(),
+            'categoria' => $this->getCategoria(),
+            'categoria_id' => $this->getCategoriaId(),
+            'carrier' => $this->getCarrier(),
+            'carrier_id' => $this->getCarrierId(),
+            'codigo' => $this->getCodigo(),
+            'monto' => $this->getMonto(),
+            'unidades' => $this->getUnidades(),
+            'vigencia' => $this->getVigencia(),
+            'descripcion' => $this->getDescripcion()
+        ];
+    }
+
+    public function toJson($options = 0)
+    {
+        return json_encode($this->toArray(), $options);
     }
 
 }
