@@ -161,7 +161,7 @@ public function toArray()
 Practicamente ésta función hace lo mismo que ```requestTXN```, pero devuelve un objeto 
 ```InformacionDeTransaccion``` dado que también manda a hablar a ```statusTXN``` 
 
-## Testing
+## Pruebas unitarias
 
 Antes de correr los test configure TAECEL_KEY y TAECEL_NIP como variables de entorno, y entonces ejecute.
 
@@ -170,6 +170,6 @@ composer test
 ```
 
 
-## Contributing
+## Contribuciones
 
 Todas las contribuciones sin bien recibidas, siempre y cuando cuenten con las pruebas unitarias correspondientes.
