@@ -39,6 +39,7 @@ class Proveedor implements Arrayable, Jsonable
         $this->categoria = Arr::get($data,'Categoria');
         $this->categoria_id = Arr::get($data, 'CategoriaID');
         $this->tipo = Arr::get($data,'Tipo');
+        $this->promo_url = Arr::get($data,'Promos');
         $campos = Arr::get($data, 'Campos');
         foreach ($campos as $campo)
         {
