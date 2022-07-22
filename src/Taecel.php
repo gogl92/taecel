@@ -239,6 +239,7 @@ class Taecel
         ]);
         throw_if($httpResponse->status() !== 200, new Exception(sprintf('%d error', $httpResponse->status())));
         $data = $httpResponse->json();
+        throw_if(is_null($data), new Exception('Servicio no disponible'));
         throw_unless($data['success'], new Exception(sprintf(__('%s, error: %d'), $data['message'], $data['error'])));
         return new InformacionDeTransaccion($data['data']);
     }
