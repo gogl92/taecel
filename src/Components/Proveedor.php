@@ -188,10 +188,12 @@ class Proveedor implements Arrayable, Jsonable
         return [
             'id' => $this->getId(),
             'nombre' => $this->getNombre(),
+            'logotipo_url' => $this->getUrlLogotipo(),
             'bolsa_id' => $this->getBolsaId(),
             'categoria' => $this->getCategoria(),
             'categoria_id' => $this->getCategoriaId(),
-            'tipo' => $this->getTipo()
+            'tipo' => $this->getTipo(),
+            'promo_url' => $this->getPromoUrl()
         ];
     }
 
