@@ -1,4 +1,7 @@
-<?php namespace Taecel\Taecel;
+<?php
+
+declare(strict_types=1);
+namespace Taecel\Taecel;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;

@@ -8,16 +8,16 @@ use Exception;
 
 class Proveedor implements Arrayable, Jsonable
 {
-    private int $id;
-    private string $nombre;
-    private string|null $url_logotipo;
-    private int $bolsa_id;
-    private string $categoria;
-    private int $categoria_id;
-    private int $tipo;
-    private string|null $promo_url;
+    protected int $id;
+    protected string $nombre;
+    protected string|null $url_logotipo;
+    protected int $bolsa_id;
+    protected string $categoria;
+    protected int $categoria_id;
+    protected int $tipo;
+    protected string|null $promo_url;
     /** @var array<Campo> */
-    private array $campos;
+    protected array $campos;
 
     protected array $rules = [
         'ID' => 'required|bail',

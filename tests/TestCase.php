@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Taecel\Taecel\Tests;
 
 use Taecel\Taecel\TaecelServiceProvider;
@@ -7,7 +9,7 @@ use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
-    public function setup() : void
+    public function setup(): void
     {
         parent::setUp();
         $this->withoutExceptionHandling();

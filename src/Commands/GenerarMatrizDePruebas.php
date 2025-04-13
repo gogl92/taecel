@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Taecel\Taecel\Commands;
 
 use Illuminate\Console\Command;

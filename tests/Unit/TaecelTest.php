@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Taecel\Taecel\Tests\Unit;
 
 use Illuminate\Support\Collection;
@@ -13,7 +15,6 @@ use Throwable;
 
 class TaecelTest extends TestCase
 {
-
     public function testGetBalance()
     {
         $repository = Taecel::create();

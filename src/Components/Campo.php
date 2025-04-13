@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Taecel\Taecel\Components;
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -10,13 +12,13 @@ use Exception;
 
 class Campo implements Arrayable, Jsonable
 {
-    private string $nombre;
-    private string $campo;
-    private int $min;
-    private int $max;
-    private int $formato;
-    private int $confirmar;
-    private int $obligatorio;
+    protected string $nombre;
+    protected string $campo;
+    protected int $min;
+    protected int $max;
+    protected int $formato;
+    protected int $confirmar;
+    protected int $obligatorio;
 
     protected array $rules = [
         'Nombre' => 'required',

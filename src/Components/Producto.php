@@ -11,17 +11,17 @@ use Exception;
 class Producto implements Arrayable, Jsonable
 {
 
-    private string $bolsa;
-    private int $bolsa_id;
-    private string $categoria;
-    private int $categoria_id;
-    private string $carrier;
-    private int $carrier_id;
-    private string $codigo;
-    private float $monto;
-    private float $unidades;
-    private string $vigencia;
-    private string $descripcion;
+    protected string $bolsa;
+    protected int $bolsa_id;
+    protected string $categoria;
+    protected int $categoria_id;
+    protected string $carrier;
+    protected int $carrier_id;
+    protected string $codigo;
+    protected float $monto;
+    protected float $unidades;
+    protected string $vigencia;
+    protected string $descripcion;
 
     protected array $rules = [
         'Bolsa' => 'required|bail',

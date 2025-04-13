@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Taecel\Taecel\Components;
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -7,7 +9,6 @@ use Illuminate\Contracts\Support\Jsonable;
 
 class Bolsa implements Arrayable, Jsonable
 {
-
     public function __construct(private int|string $id, private string $nombre, private float $saldo){}
 
     /**

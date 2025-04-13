@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Taecel\Taecel\Components;
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -8,13 +10,13 @@ use Illuminate\Support\Arr;
 
 class InformacionDeTransaccion implements Arrayable, Jsonable
 {
-    private string $transId;
-    private string $fecha;
-    private string $carrier;
-    private string $folio;
-    private string $status;
-    private string $monto;
-    private string $nota;
+    protected string $transId;
+    protected string $fecha;
+    protected string $carrier;
+    protected string $folio;
+    protected string $status;
+    protected string $monto;
+    protected string $nota;
 
     public function __construct(array $data)
     {
