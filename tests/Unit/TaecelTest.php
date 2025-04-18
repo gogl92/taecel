@@ -6,9 +6,9 @@ namespace Taecel\Taecel\Tests\Unit;
 
 use Illuminate\Support\Collection;
 use Random\RandomException;
-use Taecel\Taecel\Components\InformacionDeTransaccion;
-use Taecel\Taecel\Components\Producto;
-use Taecel\Taecel\Components\Proveedor;
+use Taecel\Taecel\Models\InformacionDeTransaccion;
+use Taecel\Taecel\Models\Producto;
+use Taecel\Taecel\Models\Proveedor;
 use Taecel\Taecel\Taecel;
 use Taecel\Taecel\Tests\TestCase;
 use Throwable;

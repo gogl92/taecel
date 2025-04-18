@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-use Taecel\Taecel\Components\Bolsa;
-use Taecel\Taecel\Components\Producto;
-use Taecel\Taecel\Components\Proveedor;
-use Taecel\Taecel\Components\InformacionDeTransaccion;
+use Taecel\Taecel\Models\Bolsa;
+use Taecel\Taecel\Models\Producto;
+use Taecel\Taecel\Models\Proveedor;
+use Taecel\Taecel\Models\InformacionDeTransaccion;
 use Taecel\Taecel\Exceptions\ServerIsOffline;
 use Throwable;
 use Exception;
@@ -70,7 +70,7 @@ class Taecel
 
     protected function url(string $url): string
     {
-        return "{$this->url}/{$url}";
+        return "$this->url/$url";
     }
 
     public static function create(): Taecel

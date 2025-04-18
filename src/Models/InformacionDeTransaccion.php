@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Taecel\Taecel\Components;
+namespace Taecel\Taecel\Models;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
