@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Taecel\Taecel\Components;
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -7,10 +9,10 @@ use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Exception;
+use Throwable;
 
 class Producto implements Arrayable, Jsonable
 {
-
     protected string $bolsa;
     protected int $bolsa_id;
     protected string $categoria;
@@ -37,6 +39,9 @@ class Producto implements Arrayable, Jsonable
         'Descripcion' => 'required'
     ];
 
+    /**
+     * @throws Throwable
+     */
     public function __construct(array $data)
     {
         $validator = Validator::make($data, $this->rules);

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Taecel\Taecel\Tests\Unit;
 
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Artisan;
+use Random\RandomException;
 use Taecel\Taecel\Components\InformacionDeTransaccion;
 use Taecel\Taecel\Components\Producto;
 use Taecel\Taecel\Components\Proveedor;
@@ -15,7 +15,11 @@ use Throwable;
 
 class TaecelTest extends TestCase
 {
-    public function testGetBalance()
+    /**
+     * @return void
+     * @throws Throwable
+     */
+    public function testGetBalance(): void
     {
         $repository = Taecel::create();
         $this->assertNotNull($repository);
@@ -24,7 +28,10 @@ class TaecelTest extends TestCase
         $this->assertNotEmpty($response);
     }
 
-    public function testGetProductos()
+    /**
+     * @return void
+     */
+    public function testGetProductos(): void
     {
         $repository = Taecel::create();
         $this->assertNotNull($repository);
@@ -49,7 +56,10 @@ class TaecelTest extends TestCase
         }
     }
 
-    public function testGetProveedoresTae()
+    /**
+     * @return void
+     */
+    public function testGetProveedoresTae(): void
     {
         $repository = Taecel::create();
         $this->assertNotNull($repository);
@@ -70,7 +80,10 @@ class TaecelTest extends TestCase
         }
     }
 
-    public function testGetProveedoresDePaquetes()
+    /**
+     * @return void
+     */
+    public function testGetProveedoresDePaquetes(): void
     {
         $repository = Taecel::create();
         $this->assertNotNull($repository);
@@ -91,7 +104,10 @@ class TaecelTest extends TestCase
         }
     }
 
-    public function testGetProveedoresServicios()
+    /**
+     * @return void
+     */
+    public function testGetProveedoresServicios(): void
     {
         $repository = Taecel::create();
         $this->assertNotNull($repository);
@@ -112,7 +128,10 @@ class TaecelTest extends TestCase
         }
     }
 
-    public function testGetProveedoresGifCards()
+    /**
+     * @return void
+     */
+    public function testGetProveedoresGifCards(): void
     {
         $repository = Taecel::create();
         $this->assertNotNull($repository);
@@ -133,11 +152,13 @@ class TaecelTest extends TestCase
         }
     }
 
-    public function testGetProductsByCarrier()
+    /**
+     * @return void
+     */
+    public function testGetProductsByCarrier(): void
     {
         $repository = Taecel::create();
         $this->assertNotNull($repository);
-        /** @var Collection $proveedores_tae */
         $proveedores_tae = $repository->getProveedoresTae();
         /** @var Proveedor $proveedor */
         $proveedor = $proveedores_tae->first();
@@ -150,7 +171,10 @@ class TaecelTest extends TestCase
         }
     }
 
-    public function testRequestTxnWithWrongDataReturnNull()
+    /**
+     * @return void
+     */
+    public function testRequestTxnWithWrongDataReturnNull(): void
     {
         $repository = Taecel::create();
         $this->assertNotNull($repository);
@@ -161,7 +185,7 @@ class TaecelTest extends TestCase
                 'referencia' => 4421234567,
                 'monto' => 200
             ];
-            $transaction_id = $repository->requestTxn($data);
+            $repository->requestTxn($data);
         }
         catch (Throwable $e)
         {
@@ -170,7 +194,12 @@ class TaecelTest extends TestCase
         $this->assertTrue($throw_error);
     }
 
-    public function testRequestTaeWithRealDataReturnTransactionId()
+    /**
+     * @return void
+     * @throws RandomException
+     * @throws Throwable
+     */
+    public function testRequestTaeWithRealDataReturnTransactionId(): void
     {
         $repository = Taecel::create();
         $this->assertNotNull($repository);
@@ -182,9 +211,7 @@ class TaecelTest extends TestCase
         /** @var Collection $productos */
         $productos = $repository->getProductsByCarrier($proveedor->getId());
         $this->assertTrue($productos->count() > 0);
-        /************************************************************
-         * Preparando datos para consumir el API
-        /************************************************************/
+
         /** @var Producto $producto */
         $producto = $productos->first();
         $data = [
@@ -196,7 +223,10 @@ class TaecelTest extends TestCase
         $this->assertNotNull($transaction_id);
     }
 
-    public function testStatusTxnWithWrongTransactionIdThrowError()
+    /**
+     * @return void
+     */
+    public function testStatusTxnWithWrongTransactionIdThrowError(): void
     {
         $repository = Taecel::create();
         $this->assertNotNull($repository);
@@ -212,7 +242,12 @@ class TaecelTest extends TestCase
         $this->assertTrue($throw_exception, 'Debió lanzar una excepción');
     }
 
-    public function testStatusTxnWithRealDataReturnCompleteInformation()
+    /**
+     * @return void
+     * @throws RandomException
+     * @throws Throwable
+     */
+    public function testStatusTxnWithRealDataReturnCompleteInformation(): void
     {
         $repository = Taecel::create();
         $this->assertNotNull($repository);
@@ -221,12 +256,9 @@ class TaecelTest extends TestCase
         $proveedor = $proveedores_tae->where(function(Proveedor $proveedor){
             return  str_contains($proveedor->getNombre(), 'elcel');
         })->first();
-        /** @var Collection $productos */
         $productos = $repository->getProductsByCarrier($proveedor->getId());
         $this->assertTrue($productos->count() > 0);
-        /************************************************************
-         * Preparando datos para consumir el API
-        /************************************************************/
+
         /** @var Producto $producto */
         $producto = $productos->first();
         $data = [
@@ -241,7 +273,12 @@ class TaecelTest extends TestCase
         $this->assertInstanceOf(InformacionDeTransaccion::class, $data);
     }
 
-    public function testPagarServicioWithRealDataReturnTransactionCompleted()
+    /**
+     * @return void
+     * @throws Throwable
+     * @throws RandomException
+     */
+    public function testPagarServicioWithRealDataReturnTransactionCompleted(): void
     {
         $repository = Taecel::create();
         $this->assertNotNull($repository);
@@ -250,29 +287,19 @@ class TaecelTest extends TestCase
         $proveedor = $proveedores_tae->where(function(Proveedor $proveedor){
             return  str_contains($proveedor->getNombre(), 'elcel');
         })->first();
-        /** @var Collection $productos */
+
         $productos = $repository->getProductsByCarrier($proveedor->getId());
         $this->assertTrue($productos->count() > 0);
-        /************************************************************
-         * Preparando datos para consumir el API
-        /************************************************************/
+
         /** @var Producto $producto */
         $producto = $productos->first();
         $data = [
             'producto' => $producto->getCodigo(),
             'referencia' => sprintf('%d%d', random_int(10000,99999), random_int(10000,99999)),
-            'monto' => $producto->getMonto()
+            'monto' => $producto->getMonto(),
         ];
-        /** @var InformacionDeTransaccion $information */
         $information = $repository->pagarServicio($data);
         $this->assertNotNull($information);
         $this->assertInstanceOf(InformacionDeTransaccion::class, $information);
     }
-
-    /*
-    public function testMatrizDePruebas()
-    {
-        Artisan::call('taecel:matrizdepruebas');
-    }*/
-
 }

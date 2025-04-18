@@ -1,4 +1,8 @@
-<?php namespace Taecel\Taecel\Components;
+<?php
+
+declare(strict_types=1);
+
+namespace Taecel\Taecel\Components;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;

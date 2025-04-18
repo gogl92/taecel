@@ -19,14 +19,14 @@
     "minimum-stability": "dev",
     "prefer-stable":true,
     "require": {
-        "php": "^8",
+        "php": "^8.3",
         "guzzlehttp/guzzle": "^7.4"
     },
     "require-dev": {
         "symfony/thanks": "^1.0",
         "phpunit/phpunit": "^9",
         "orchestra/testbench": "^7",
-        "illuminate/support": "^9"
+        "illuminate/support": "^9|^10|^11|^12",
     },
     "autoload": {
         "psr-4": {

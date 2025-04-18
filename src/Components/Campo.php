@@ -8,6 +8,7 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
+use ArrayAccess;
 use Exception;
 
 class Campo implements Arrayable, Jsonable
@@ -44,7 +45,7 @@ class Campo implements Arrayable, Jsonable
     }
 
     /**
-     * @return array|\ArrayAccess|mixed|string
+     * @return array|ArrayAccess|mixed|string
      */
     public function getNombre(): mixed
     {
@@ -52,7 +53,7 @@ class Campo implements Arrayable, Jsonable
     }
 
     /**
-     * @param array|\ArrayAccess|mixed|string $nombre
+     * @param array|ArrayAccess|mixed|string $nombre
      */
     public function setNombre(mixed $nombre): void
     {
@@ -60,7 +61,7 @@ class Campo implements Arrayable, Jsonable
     }
 
     /**
-     * @return array|\ArrayAccess|mixed|string
+     * @return array|ArrayAccess|mixed|string
      */
     public function getCampo(): mixed
     {
@@ -68,7 +69,7 @@ class Campo implements Arrayable, Jsonable
     }
 
     /**
-     * @param array|\ArrayAccess|mixed|string $campo
+     * @param array|ArrayAccess|mixed|string $campo
      */
     public function setCampo(mixed $campo): void
     {
@@ -76,7 +77,7 @@ class Campo implements Arrayable, Jsonable
     }
 
     /**
-     * @return array|\ArrayAccess|int|mixed
+     * @return array|ArrayAccess|int|mixed
      */
     public function getMin(): mixed
     {
@@ -84,7 +85,7 @@ class Campo implements Arrayable, Jsonable
     }
 
     /**
-     * @param array|\ArrayAccess|int|mixed $min
+     * @param array|ArrayAccess|int|mixed $min
      */
     public function setMin(mixed $min): void
     {
@@ -92,7 +93,7 @@ class Campo implements Arrayable, Jsonable
     }
 
     /**
-     * @return array|\ArrayAccess|int|mixed
+     * @return array|ArrayAccess|int|mixed
      */
     public function getMax(): mixed
     {
@@ -100,7 +101,7 @@ class Campo implements Arrayable, Jsonable
     }
 
     /**
-     * @param array|\ArrayAccess|int|mixed $max
+     * @param array|ArrayAccess|int|mixed $max
      */
     public function setMax(mixed $max): void
     {
@@ -108,7 +109,7 @@ class Campo implements Arrayable, Jsonable
     }
 
     /**
-     * @return array|\ArrayAccess|int|mixed
+     * @return array|ArrayAccess|int|mixed
      */
     public function getFormato(): mixed
     {
@@ -116,7 +117,7 @@ class Campo implements Arrayable, Jsonable
     }
 
     /**
-     * @param array|\ArrayAccess|int|mixed $formato
+     * @param array|ArrayAccess|int|mixed $formato
      */
     public function setFormato(mixed $formato): void
     {
@@ -124,7 +125,7 @@ class Campo implements Arrayable, Jsonable
     }
 
     /**
-     * @return array|\ArrayAccess|int|mixed
+     * @return array|ArrayAccess|int|mixed
      */
     public function getConfirmar(): mixed
     {
@@ -132,7 +133,7 @@ class Campo implements Arrayable, Jsonable
     }
 
     /**
-     * @param array|\ArrayAccess|int|mixed $confirmar
+     * @param array|ArrayAccess|int|mixed $confirmar
      */
     public function setConfirmar(mixed $confirmar): void
     {
@@ -140,7 +141,7 @@ class Campo implements Arrayable, Jsonable
     }
 
     /**
-     * @return array|\ArrayAccess|int|mixed
+     * @return array|ArrayAccess|int|mixed
      */
     public function getObligatorio(): mixed
     {
@@ -148,7 +149,7 @@ class Campo implements Arrayable, Jsonable
     }
 
     /**
-     * @param array|\ArrayAccess|int|mixed $obligatorio
+     * @param array|ArrayAccess|int|mixed $obligatorio
      */
     public function setObligatorio(mixed $obligatorio): void
     {

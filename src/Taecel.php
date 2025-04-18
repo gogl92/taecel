@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -283,10 +283,12 @@ class Taecel
     }
 
     /**
-     * 'producto' => 'required',
+     * data {'producto' => 'required',
      * 'referencia' => 'required',
-     * 'monto'    => 'required'
-     * @return void
+     * 'monto'    => 'required'}
+     * @param array $data
+     * @return InformacionDeTransaccion
+     * @throws Throwable
      */
     public function pagarServicio(array $data): InformacionDeTransaccion
     {
