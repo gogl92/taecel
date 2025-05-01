@@ -244,6 +244,8 @@ class Taecel
             'monto' => Arr::get($data, 'monto')
         ]);
 
+        logger()->info($httpResponse->body());
+
         throw_if($httpResponse->status() !== 200, new Exception(sprintf('%d error', $httpResponse->status())));
 
         $data = $httpResponse->json();
@@ -272,6 +274,8 @@ class Taecel
             'nip' => $this->nip,
             'transID' => Arr::get($data, 'transaction_id')
         ]);
+
+        logger()->info($httpResponse->body());
 
         throw_if($httpResponse->status() !== 200, new Exception(sprintf('%d error', $httpResponse->status())));
 

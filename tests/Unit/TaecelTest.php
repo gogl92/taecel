@@ -15,6 +15,64 @@ use Throwable;
 
 class TaecelTest extends TestCase
 {
+
+    /**
+     * @dataProvider matrizDePruebasProvider
+     * @ dataProvider matrizDePruebasServiciosProvider
+     */
+    public function testMatrizDePruebas($referencia, $carrier, $codigo, $monto): void
+    {
+        try {
+            $data = [
+                'referencia' => $referencia,
+                'carrier'    => $carrier,
+                'codigo'     => $codigo,
+                'monto'      => $monto,
+            ];
+
+            $repository = Taecel::create();
+            $transaction_id = $repository->requestTxn([
+                'producto' => $data['codigo'],
+                'referencia' => $data['referencia'],
+                'monto'     => $data['monto']
+            ]);
+
+            $transaction = $repository->statusTxn(['transaction_id' => $transaction_id]);
+            $csvRow = [
+                $referencia,
+                $carrier,
+                $codigo,
+                $monto,
+                $transaction->getFecha(),
+                $transaction->getTransId(),
+                $transaction->getFolio(),
+                $transaction->getStatus(),
+                $transaction->getNota(),
+            ];
+            $file = fopen('result.csv', 'a');
+            fputcsv($file, $csvRow);
+            fclose($file);
+        } catch (\Throwable $e) {
+            $csvRow = [
+                $referencia,
+                $carrier,
+                $codigo,
+                $monto,
+                '', // Fecha
+                '', // TransId
+                '', // Folio
+                'fracasada', // Estatus
+                $e->getMessage(), // Nota/Error
+            ];
+            $file = fopen('result.csv', 'a');
+            fputcsv($file, $csvRow);
+            fclose($file);
+            file_put_contents('result_errors.log', sprintf("Error for referencia %s, carrier %s, codigo %s, monto %s: %s\n%s\n", $referencia, $carrier, $codigo, $monto, $e->getMessage(), $e->getTraceAsString()), FILE_APPEND);
+        } finally {
+            $this->assertTrue(true);
+        }
+    }
+
     /**
      * @return void
      * @throws Throwable
@@ -301,5 +359,33 @@ class TaecelTest extends TestCase
         $information = $repository->pagarServicio($data);
         $this->assertNotNull($information);
         $this->assertInstanceOf(InformacionDeTransaccion::class, $information);
+    }
+
+    public static function matrizDePruebasProvider(): array
+    {
+        return [
+            ['5555555505', 'Telcel',    'TEL010', 10],
+            ['5555555510', 'Telcel',    'TEL050', 50],
+            ['5555555515', 'Telcel',    'TEL100', 100],
+            ['5555555520', 'Telcel',    'TEL150', 150],
+            ['5555555525', 'Telcel',    'TEL200', 200],
+            ['5555555530', 'Movistar',  'MOV010', 10],
+            ['5555555540', 'Movistar',  'MOV050', 50],
+            ['5555555560', 'Movistar',  'MOV100', 100],
+            ['5555555565', 'Movistar',  'MOV120', 120],
+            ['5555555200', 'Movistar',  'MOV150', 150],
+        ];
+    }
+
+    public static function matrizDePruebasServiciosProvider(): array
+    {
+        return [
+            ['871235412635', 'Sky', 'SKY000', 95],
+            ['6589745213', 'Telmex', 'TMX001', 100],
+            ['125478965412365478965230126654', 'Cfe', 'CFE000', 260],
+            ['9854123547', 'Megacable', 'MEG000', 131],
+            ['27458965324125', 'Dish', 'DSH000', 103],
+            ['3456987', 'Maxcom', 'MAX000', 177],
+        ];
     }
 }
